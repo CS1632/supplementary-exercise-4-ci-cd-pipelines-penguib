@@ -18,8 +18,16 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean returnCat(int id) {
-		// TODO
-		return false;
+		if (!catExists(id))
+			return false;
+		
+		Cat c = getCat(id);
+		if (!c.getRented())
+			return false;
+
+		c.returnCat();
+
+		return true;
 	}
 
 	/**
@@ -62,8 +70,10 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean catExists(int id) {
-		// TODO
-		return false;
+		if (cats.size() == 0 || cats == null)
+			return false;
+
+		return getCat(id) != null;
 	}
 
 	/**
